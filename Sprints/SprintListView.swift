@@ -8,7 +8,7 @@
 import SwiftData
 import SwiftUI
 
-struct ContentView: View {
+struct SprintListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var sprints: [Sprint]
 
@@ -19,7 +19,7 @@ struct ContentView: View {
                     NavigationLink {
                         Text("\(sprint.title)")
                     } label: {
-                        Text(sprint.title)
+                        SprintProgressView(sprint: sprint)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -56,6 +56,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    SprintListView()
         .modelContainer(for: Sprint.self, inMemory: true)
 }

@@ -12,13 +12,16 @@ import SwiftUI
 @Model
 final class Sprint {
     var title: String
-    var color: String
+    var desc: String?
+    var color: UInt
+
     var iterations: Int
     var completedIterations: Int = 0
 
-    init(title: String, color: String, iterations: Int) {
+    init(title: String, desc: String, color: Color, iterations: Int) {
         self.title = title
-        self.color = color
+        self.desc = desc
+        self.color = color.hex
         self.iterations = iterations
     }
 }

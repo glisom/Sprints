@@ -5,8 +5,8 @@
 //  Created by Grant Isom on 11/17/23.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct SprintsApp: App {
@@ -25,7 +25,7 @@ struct SprintsApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SprintListView()
         }
         .modelContainer(sharedModelContainer)
     }

@@ -8,51 +8,49 @@
 import SwiftUI
 
 struct SprintProgressView: View {
-    var value: Int
-    var maximum: Int = 7
+    var sprint: Sprint
     var height: CGFloat = 28
     var spacing: CGFloat = 2
-    var selectedColor: Color = .accentColor
     var unselectedColor: Color = Color.secondary.opacity(0.3)
 
     var body: some View {
-        HStack(spacing: spacing) {
-            ForEach(0 ..< maximum) { index in
-                Rectangle()
-                    .foregroundColor(index < self.value ? self.selectedColor : self.unselectedColor)
-            }
-        }
-        .frame(maxHeight: height)
-        .clipShape(Capsule())
-    }
-}
-
-struct ExampleOfProgress: View {
-    @State var value = 0
-    var maximum = 10
-
-    var body: some View {
         VStack(alignment: .leading) {
-            Text("Title of Sprint")
+            Text(self.sprint.title)
                 .font(.headline)
-            Text("Additional description of the sprint.")
-                .font(.body)
+            if let desc = self.sprint.desc {
+                Text(desc)
+                    .font(.body)
+            }
             withAnimation(.bouncy(duration: 0.5, extraBounce: 0.5)) {
-                SprintProgressView(value: value, maximum: maximum)
-                    .padding(.vertical)
+                HStack(spacing: spacing) {
+                    ForEach(0 ..< self.sprint.iterations, id: \.self) { index in
+                        Rectangle()
+                            .foregroundColor(index < self.sprint.completedIterations ? Color(hex: self.sprint.color) : self.unselectedColor)
+                    }
+                }
+                .frame(maxHeight: height)
+                .clipShape(Capsule())
             }
             ControlGroup {
-                Button(action: { self.value = (self.value - 1) % (self.maximum - 1) }) {
+                Button(action: { self.sprint.completedIterations = (self.sprint.completedIterations - 1) % (self.sprint.iterations - 1) }) {
                     Label("Decrease", systemImage: "minus")
                 }
 
-                Button(action: { self.value = (self.value + 1) % (self.maximum + 1) }) {
+                Button(action: { self.sprint.completedIterations = (self.sprint.completedIterations + 1) % (self.sprint.iterations + 1) }) {
                     Label("Increase", systemImage: "plus")
                 }
             }
             .frame(width: 80)
         }
         .padding()
+    }
+}
+
+struct ExampleOfProgress: View {
+    @State var sprint: Sprint = .init(title: "22 Day Challenge", desc: "Stretching Challenge from Athlean-X", color: Color.blue, iterations: 7)
+
+    var body: some View {
+        SprintProgressView(sprint: sprint)
     }
 }
 

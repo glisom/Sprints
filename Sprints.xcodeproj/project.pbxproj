@@ -9,20 +9,22 @@
 /* Begin PBXBuildFile section */
 		7BDAA2D72B086F210093CCF8 /* SprintsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDAA2D62B086F210093CCF8 /* SprintsApp.swift */; };
 		7BDAA2D92B086F210093CCF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDAA2D82B086F210093CCF8 /* ContentView.swift */; };
-		7BDAA2DB2B086F210093CCF8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDAA2DA2B086F210093CCF8 /* Item.swift */; };
+		7BDAA2DB2B086F210093CCF8 /* Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDAA2DA2B086F210093CCF8 /* Sprint.swift */; };
 		7BDAA2DD2B086F220093CCF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BDAA2DC2B086F220093CCF8 /* Assets.xcassets */; };
 		7BDAA2E02B086F220093CCF8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BDAA2DF2B086F220093CCF8 /* Preview Assets.xcassets */; };
+		7BDAA2E92B0948D70093CCF8 /* SprintProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDAA2E82B0948D70093CCF8 /* SprintProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7BDAA2D32B086F210093CCF8 /* Sprints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sprints.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDAA2D62B086F210093CCF8 /* SprintsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintsApp.swift; sourceTree = "<group>"; };
 		7BDAA2D82B086F210093CCF8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		7BDAA2DA2B086F210093CCF8 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		7BDAA2DA2B086F210093CCF8 /* Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprint.swift; sourceTree = "<group>"; };
 		7BDAA2DC2B086F220093CCF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BDAA2DF2B086F220093CCF8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7BDAA2E12B086F220093CCF8 /* Sprints.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sprints.entitlements; sourceTree = "<group>"; };
 		7BDAA2E22B086F220093CCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BDAA2E82B0948D70093CCF8 /* SprintProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,11 +59,12 @@
 			children = (
 				7BDAA2D62B086F210093CCF8 /* SprintsApp.swift */,
 				7BDAA2D82B086F210093CCF8 /* ContentView.swift */,
-				7BDAA2DA2B086F210093CCF8 /* Item.swift */,
+				7BDAA2DA2B086F210093CCF8 /* Sprint.swift */,
 				7BDAA2DC2B086F220093CCF8 /* Assets.xcassets */,
 				7BDAA2E12B086F220093CCF8 /* Sprints.entitlements */,
 				7BDAA2E22B086F220093CCF8 /* Info.plist */,
 				7BDAA2DE2B086F220093CCF8 /* Preview Content */,
+				7BDAA2E82B0948D70093CCF8 /* SprintProgressView.swift */,
 			);
 			path = Sprints;
 			sourceTree = "<group>";
@@ -145,7 +148,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BDAA2D92B086F210093CCF8 /* ContentView.swift in Sources */,
-				7BDAA2DB2B086F210093CCF8 /* Item.swift in Sources */,
+				7BDAA2E92B0948D70093CCF8 /* SprintProgressView.swift in Sources */,
+				7BDAA2DB2B086F210093CCF8 /* Sprint.swift in Sources */,
 				7BDAA2D72B086F210093CCF8 /* SprintsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

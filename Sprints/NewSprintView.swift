@@ -25,10 +25,7 @@ struct NewSprintView: View {
     var body: some View {
         VStack {
             Form {
-                Section(header: Text("Create a new sprint")
-                    .font(.title3)
-                    .bold())
-                {
+                Section {
                     TextField(
                         "Sprint Title",
                         text: $title

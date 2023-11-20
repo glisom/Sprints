@@ -11,6 +11,7 @@ struct SprintProgressView: View {
     var sprint: Sprint
     var height: CGFloat = 28
     var spacing: CGFloat = 2
+    var selectedColor: Color = .accentColor
     var unselectedColor: Color = Color.secondary.opacity(0.3)
 
     var body: some View {
@@ -21,11 +22,11 @@ struct SprintProgressView: View {
                 Text(desc)
                     .font(.body)
             }
-            withAnimation(.bouncy(duration: 0.5, extraBounce: 0.5)) {
+            withAnimation(.spring) {
                 HStack(spacing: spacing) {
                     ForEach(0 ..< self.sprint.iterations, id: \.self) { index in
                         Rectangle()
-                            .foregroundColor(index < self.sprint.completedIterations ? Color(hex: self.sprint.color) : self.unselectedColor)
+                            .foregroundColor(index < self.sprint.completedIterations ? selectedColor : self.unselectedColor)
                     }
                 }
                 .frame(maxHeight: height)
@@ -42,7 +43,6 @@ struct SprintProgressView: View {
             }
             .frame(width: 80)
         }
-        .padding()
     }
 }
 

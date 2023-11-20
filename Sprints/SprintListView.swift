@@ -11,25 +11,24 @@ import SwiftUI
 struct SprintListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var sprints: [Sprint]
+    @State var showNewSprintSheet = false
 
     var body: some View {
         NavigationSplitView {
             List {
-                ForEach(sprints) { sprint in
-                    NavigationLink {
-                        Text("\(sprint.title)")
-                    } label: {
+                Section {
+                    ForEach(self.sprints) { sprint in
                         SprintProgressView(sprint: sprint)
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: self.deleteItems)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button(action: self.addItem) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
@@ -37,19 +36,26 @@ struct SprintListView: View {
         } detail: {
             Text("Select an item")
         }
+        .sheet(isPresented: self.$showNewSprintSheet, content: {
+            NewSprintView(onCreate: { sprint in
+                if let sprint = sprint {
+                    self.modelContext.container.mainContext.insert(sprint)
+                    self.showNewSprintSheet.toggle()
+                }
+
+            })
+            .presentationDetents([.medium])
+        })
     }
 
     private func addItem() {
-        withAnimation {
-//            let newSprint = Item(timestamp: Date())
-//            modelContext.insert(newItem)
-        }
+        self.showNewSprintSheet.toggle()
     }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(sprints[index])
+                self.modelContext.delete(self.sprints[index])
             }
         }
     }

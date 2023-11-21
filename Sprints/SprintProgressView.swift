@@ -9,9 +9,8 @@ import SwiftUI
 
 struct SprintProgressView: View {
     var sprint: Sprint
-    var height: CGFloat = 28
+    var height: CGFloat = 22
     var spacing: CGFloat = 2
-    var selectedColor: Color = .accentColor
     var unselectedColor: Color = Color.secondary.opacity(0.3)
 
     var body: some View {
@@ -26,10 +25,10 @@ struct SprintProgressView: View {
                 HStack(spacing: spacing) {
                     ForEach(0 ..< self.sprint.iterations, id: \.self) { index in
                         Rectangle()
-                            .foregroundColor(index < self.sprint.completedIterations ? selectedColor : self.unselectedColor)
+                            .foregroundColor(index < self.sprint.completedIterations ? Color(hex: self.sprint.color) : self.unselectedColor)
                     }
                 }
-                .frame(maxHeight: height)
+                .frame(height: height)
                 .clipShape(Capsule())
             }
             ControlGroup {

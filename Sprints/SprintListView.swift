@@ -15,14 +15,15 @@ struct SprintListView: View {
 
     var body: some View {
         NavigationSplitView {
-            List {
+            ScrollView {
                 Section {
                     ForEach(self.sprints) { sprint in
                         SprintProgressView(sprint: sprint)
+                        Divider()
                     }
                 }
-                .onDelete(perform: self.deleteItems)
             }
+            .padding()
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()

@@ -13,13 +13,16 @@ struct SprintListView: View {
     @Query private var sprints: [Sprint]
     @State var showNewSprintSheet = false
     @State var selectedSprint: Sprint?
+    @State private var preferredColumn =
+        NavigationSplitViewColumn.sidebar
 
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(preferredCompactColumn: self.$preferredColumn) {
             ScrollView {
                 Section {
                     ForEach(self.sprints) { sprint in
                         SprintProgressView(sprint: sprint, onShowDetail: {
+                            self.preferredColumn = .detail
                             self.selectedSprint = sprint
                         })
                         Divider()
@@ -39,9 +42,18 @@ struct SprintListView: View {
             }
         } detail: {
             if let selectedSprint = self.selectedSprint {
-                SprintDetailView(sprint: selectedSprint)
+                SprintDetailView(sprint: selectedSprint, onCreate: { sprint in
+                    if let sprint = sprint {
+                        do {
+                            try self.modelContext.container.mainContext.save()
+                        } catch {
+                            print("failed")
+                        }
+                    }
+                })
             } else {
                 Text("Select a sprint.")
+                    .font(.title)
             }
         }
         .sheet(isPresented: self.$showNewSprintSheet, content: {
@@ -50,7 +62,6 @@ struct SprintListView: View {
                     self.modelContext.container.mainContext.insert(sprint)
                     self.showNewSprintSheet.toggle()
                 }
-
             })
             .presentationDetents([.medium])
         })

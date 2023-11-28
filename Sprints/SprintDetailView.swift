@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SprintDetailView: View {
     var sprint: Sprint
+    var onCreate: ((Sprint?) -> ())? = nil
     var body: some View {
         VStack {
             HStack {
@@ -19,12 +20,10 @@ struct SprintDetailView: View {
                         .bold()
                         .padding(.leading)
                         .multilineTextAlignment(.leading)
-                        .frame(width: .infinity)
                     Text(sprint.desc ?? "")
                         .font(.subheadline)
                         .bold()
                         .multilineTextAlignment(.leading)
-                        .frame(width: .infinity)
                 }
                 .padding(.leading)
                 Spacer()
@@ -34,6 +33,7 @@ struct SprintDetailView: View {
                           desc: sprint.desc ?? "",
                           color: Color(hex: sprint.color),
                           iterations: String(sprint.iterations),
+                          onCreate: onCreate,
                           isUpdate: true)
         }
     }

@@ -44,7 +44,9 @@ struct SprintProgressView: View {
                 }
                 .frame(width: 80)
             }
-            Button(action: {}, label: {
+            Button(action: {
+                onShowDetail()
+            }, label: {
                 Image(systemName: "arrow.right.circle.fill")
                     .resizable()
                     .frame(width: 32, height: 32)

@@ -12,13 +12,16 @@ struct SprintListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var sprints: [Sprint]
     @State var showNewSprintSheet = false
+    @State var selectedSprint: Sprint?
 
     var body: some View {
         NavigationSplitView {
             ScrollView {
                 Section {
                     ForEach(self.sprints) { sprint in
-                        SprintProgressView(sprint: sprint)
+                        SprintProgressView(sprint: sprint, onShowDetail: {
+                            self.selectedSprint = sprint
+                        })
                         Divider()
                     }
                 }
@@ -35,7 +38,11 @@ struct SprintListView: View {
                 }
             }
         } detail: {
-            Text("Select an item")
+            if let selectedSprint = self.selectedSprint {
+                SprintDetailView(sprint: selectedSprint)
+            } else {
+                Text("Select a sprint.")
+            }
         }
         .sheet(isPresented: self.$showNewSprintSheet, content: {
             NewSprintView(onCreate: { sprint in

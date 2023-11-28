@@ -10,13 +10,15 @@ import SwiftUI
 struct NewSprintView: View {
     @State var title: String = ""
     @State var desc: String = ""
+    @State var embedId: String = ""
     @State var color: Color = .accentColor
     @State var iterations: String = ""
     var onCreate: ((Sprint?) -> ())? = nil
+    var isUpdate: Bool = false
 
     func createSprint(completion: (Sprint?) -> ()) {
         if title != "", let its = Int(iterations) {
-            completion(Sprint(title: title, desc: desc, color: color, iterations: its))
+            completion(Sprint(title: title, desc: desc, embedId: embedId, color: color, iterations: its))
         } else {
             return completion(nil)
         }
@@ -35,6 +37,10 @@ struct NewSprintView: View {
                         "Description (Optional)",
                         text: $desc
                     )
+                    TextField(
+                        "Youtube Embed Id (Optional)",
+                        text: $embedId
+                    )
                     TextField("Iterations", text: $iterations)
                         .keyboardType(.numberPad)
                 }
@@ -50,7 +56,7 @@ struct NewSprintView: View {
                         }
                     }
                 }) {
-                    Text("Create New Sprint")
+                    Text(isUpdate ? "Update Sprint" : "Create New Sprint")
                 }
             }
         }

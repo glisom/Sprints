@@ -12,44 +12,54 @@ struct SprintProgressView: View {
     var height: CGFloat = 22
     var spacing: CGFloat = 2
     var unselectedColor: Color = Color.secondary.opacity(0.3)
+    var onShowDetail: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(self.sprint.title)
-                .font(.headline)
-            if let desc = self.sprint.desc {
-                Text(desc)
-                    .font(.body)
-            }
-            withAnimation(.spring) {
-                HStack(spacing: spacing) {
-                    ForEach(0 ..< self.sprint.iterations, id: \.self) { index in
-                        Rectangle()
-                            .foregroundColor(index < self.sprint.completedIterations ? Color(hex: self.sprint.color) : self.unselectedColor)
+        HStack {
+            VStack(alignment: .leading) {
+                Text(self.sprint.title)
+                    .font(.headline)
+                if let desc = self.sprint.desc {
+                    Text(desc)
+                        .font(.body)
+                }
+                withAnimation(.spring) {
+                    HStack(spacing: spacing) {
+                        ForEach(0 ..< self.sprint.iterations, id: \.self) { index in
+                            Rectangle()
+                                .foregroundColor(index < self.sprint.completedIterations ? Color(hex: self.sprint.color) : self.unselectedColor)
+                        }
+                    }
+                    .frame(height: height)
+                    .clipShape(Capsule())
+                }
+                ControlGroup {
+                    Button(action: { self.sprint.completedIterations = (self.sprint.completedIterations - 1) % (self.sprint.iterations - 1) }) {
+                        Label("Decrease", systemImage: "minus")
+                    }
+
+                    Button(action: { self.sprint.completedIterations = (self.sprint.completedIterations + 1) % (self.sprint.iterations + 1) }) {
+                        Label("Increase", systemImage: "plus")
                     }
                 }
-                .frame(height: height)
-                .clipShape(Capsule())
+                .frame(width: 80)
             }
-            ControlGroup {
-                Button(action: { self.sprint.completedIterations = (self.sprint.completedIterations - 1) % (self.sprint.iterations - 1) }) {
-                    Label("Decrease", systemImage: "minus")
-                }
-
-                Button(action: { self.sprint.completedIterations = (self.sprint.completedIterations + 1) % (self.sprint.iterations + 1) }) {
-                    Label("Increase", systemImage: "plus")
-                }
-            }
-            .frame(width: 80)
+            Button(action: {}, label: {
+                Image(systemName: "arrow.right.circle.fill")
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                    .tint(Color(hex: sprint.color))
+            })
+            .padding(.leading)
         }
     }
 }
 
 struct ExampleOfProgress: View {
-    @State var sprint: Sprint = .init(title: "22 Day Challenge", desc: "Stretching Challenge from Athlean-X", color: Color.blue, iterations: 7)
+    @State var sprint: Sprint = .init(title: "22 Day Challenge", desc: "Stretching Challenge from Athlean-X", embedId: "XxSgdX7lX6E", color: Color.blue, iterations: 7)
 
     var body: some View {
-        SprintProgressView(sprint: sprint)
+        SprintProgressView(sprint: sprint, onShowDetail: {})
     }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B39BC0B2B15677F0089C10F /* SprintDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39BC0A2B15677F0089C10F /* SprintDetailView.swift */; };
+		7BBE25B52B156E7200A14075 /* LinkPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBE25B42B156E7200A14075 /* LinkPlayer.swift */; };
 		7BDAA2D72B086F210093CCF8 /* SprintsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDAA2D62B086F210093CCF8 /* SprintsApp.swift */; };
 		7BDAA2D92B086F210093CCF8 /* SprintListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDAA2D82B086F210093CCF8 /* SprintListView.swift */; };
 		7BDAA2DB2B086F210093CCF8 /* Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDAA2DA2B086F210093CCF8 /* Sprint.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B39BC0A2B15677F0089C10F /* SprintDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintDetailView.swift; sourceTree = "<group>"; };
+		7BBE25B42B156E7200A14075 /* LinkPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPlayer.swift; sourceTree = "<group>"; };
 		7BDAA2D32B086F210093CCF8 /* Sprints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sprints.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDAA2D62B086F210093CCF8 /* SprintsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintsApp.swift; sourceTree = "<group>"; };
 		7BDAA2D82B086F210093CCF8 /* SprintListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintListView.swift; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 				7BDAA2DE2B086F220093CCF8 /* Preview Content */,
 				7BDAA2EE2B0951AF0093CCF8 /* NewSprintView.swift */,
 				7BDAA2F02B0953860093CCF8 /* Extensions.swift */,
+				7B39BC0A2B15677F0089C10F /* SprintDetailView.swift */,
+				7BBE25B42B156E7200A14075 /* LinkPlayer.swift */,
 			);
 			path = Sprints;
 			sourceTree = "<group>";
@@ -161,11 +167,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B39BC0B2B15677F0089C10F /* SprintDetailView.swift in Sources */,
 				7BDAA2D92B086F210093CCF8 /* SprintListView.swift in Sources */,
 				7BDAA2F12B0953860093CCF8 /* Extensions.swift in Sources */,
 				7BDAA2E92B0948D70093CCF8 /* SprintProgressView.swift in Sources */,
 				7BDAA2DB2B086F210093CCF8 /* Sprint.swift in Sources */,
 				7BDAA2EF2B0951AF0093CCF8 /* NewSprintView.swift in Sources */,
+				7BBE25B52B156E7200A14075 /* LinkPlayer.swift in Sources */,
 				7BDAA2D72B086F210093CCF8 /* SprintsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

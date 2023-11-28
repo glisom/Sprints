@@ -42,14 +42,13 @@ struct SprintListView: View {
             }
         } detail: {
             if let selectedSprint = self.selectedSprint {
-                SprintDetailView(sprint: selectedSprint, onCreate: { sprint in
-                    if let sprint = sprint {
-                        do {
-                            try self.modelContext.container.mainContext.save()
-                        } catch {
-                            print("failed")
-                        }
+                SprintDetailView(sprint: selectedSprint, onCreate: { _ in
+                    do {
+                        try self.modelContext.container.mainContext.save()
+                    } catch {
+                        print("failed")
                     }
+
                 })
             } else {
                 Text("Select a sprint.")

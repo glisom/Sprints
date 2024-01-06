@@ -42,17 +42,16 @@ struct SprintListView: View {
             }
         } detail: {
             if let selectedSprint = self.selectedSprint {
-                SprintDetailView(sprint: selectedSprint, onCreate: { _ in
-                    do {
-                        try self.modelContext.container.mainContext.save()
-                    } catch {
-                        print("failed")
-                    }
+                let binding = Binding { selectedSprint } set: { self.selectedSprint = $0 }
 
-                })
-            } else {
-                Text("Select a sprint.")
-                    .font(.title)
+                SprintDetailView(sprint: binding) { sprint in
+                    if let sprint = sprint {
+                        print(sprint)
+                        self.selectedSprint = sprint
+                        self.preferredColumn = .sidebar
+                        self.selectedSprint = nil
+                    }
+                }
             }
         }
         .sheet(isPresented: self.$showNewSprintSheet, content: {

@@ -9,8 +9,8 @@ import AVKit
 import SwiftUI
 
 struct SprintDetailView: View {
-    var sprint: Sprint
-    var onCreate: ((Sprint?) -> ())? = nil
+    @Binding var sprint: Sprint
+    var onUpdate: ((Sprint?) -> ())? = nil
     var body: some View {
         VStack {
             HStack {
@@ -33,13 +33,20 @@ struct SprintDetailView: View {
                           desc: sprint.desc ?? "",
                           color: Color(hex: sprint.color),
                           iterations: String(sprint.iterations),
-                          onCreate: onCreate,
+                          onCreate: onUpdate,
                           isUpdate: true)
         }
     }
 }
 
-var sprint = Sprint(title: "Sprint Title", desc: "Sprint Description", embedId: "XxSgdX7lX6E", color: Color.blue, iterations: 12)
+struct SprintDetailPreviewView: View {
+    @State var sprint = Sprint(title: "Sprint Title", desc: "Sprint Description", embedId: "XxSgdX7lX6E", color: Color.blue, iterations: 12)
+
+    var body: some View {
+        SprintDetailView(sprint: $sprint)
+    }
+}
+
 #Preview {
-    SprintDetailView(sprint: sprint)
+    SprintDetailPreviewView()
 }
